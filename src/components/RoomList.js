@@ -12,13 +12,31 @@ class RoomList extends Component {
 
   componentDidMount() {
      this.roomsRef.on('child_added', snapshot => {
-       console.log(snapshot);
+       const room = snapshot.val();
+       room.key = snapshot.key;
+       this.setState({ rooms: this.state.rooms.concat( room ) })
      });
    }
 
   render() {
     return (
       <section className="RoomList">
+          <div className="row">
+            <div className="col-md-3 navbar">
+              <h1 className="navbar-header">Bloc Chat</h1>
+              <table>
+              <tbody>
+              {
+                this.state.rooms.map((room, index) =>
+                  <tr className="rooms" key={index}>
+                    <td className="room">Room {index +1}</td>
+                  </tr>
+                )
+              }
+            </tbody>
+            </table>
+            </div>
+        </div>
       </section>
     );
   }

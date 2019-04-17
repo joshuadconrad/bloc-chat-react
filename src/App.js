@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList';
 import './App.css';
+import './components/bootstrap-grid.css';
 import * as firebase from 'firebase';
 
 // Initialize Firebase
@@ -23,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <RoomList />
+       <RoomList firebase={firebase}/>
       </div>
     );
   }

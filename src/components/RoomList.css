@@ -1,0 +1,23 @@
+.navbar{
+  background: #dedede;
+}
+@media(min-width: 768px){
+  .navbar{
+    height: 100vh;
+    padding-left: 30px!important;
+    text-align:left;
+}
+}
+
+.navbar-header{
+  font-size: 32px;
+}
+
+.room{
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+.rooms{
+  padding: 0;
+}
