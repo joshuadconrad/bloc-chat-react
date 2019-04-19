@@ -1,3 +1,7 @@
+.RoomList{
+  position: relative;
+}
+
 .navbar{
   background: #dedede;
 }
@@ -13,6 +17,11 @@
   font-size: 32px;
 }
 
+.rooms-container{
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+
 .room{
   padding-bottom: 20px;
   font-size: 20px;
@@ -20,4 +29,39 @@
 
 .rooms{
   padding: 0;
+}
+
+.new-room{
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/*FORM*/
+
+.new-room-modal{
+  position: relative;
+  z-index: 2;
+}
+
+#newRoomForm{
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  width: 20%;
+  background: grey;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#newRoomName{
+  width:100%;
+}
+
+#cancel{
+  width:100%;
+}
+
+#submit{
+  width:100%;
 }
