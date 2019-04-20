@@ -46,12 +46,19 @@
 
 #newRoomForm{
   position: fixed;
-  top: 30%;
-  left: 40%;
-  width: 20%;
+  top: 20%;
+  left: 15%;
+  width: 70%;
   background: grey;
   padding: 15px;
   border-radius: 5px;
+}
+@media(min-width:992px){
+  #newRoomForm{
+    top: 30%;
+    left: 40%;
+    width: 20%;
+  }
 }
 
 #newRoomName{

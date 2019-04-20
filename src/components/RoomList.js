@@ -7,7 +7,7 @@ class RoomList extends Component {
       this.state = {
         rooms: [],
         modalIsOpen: false,
-        room: null,
+        room: '',
       }
       this.roomsRef = this.props.firebase.database().ref('rooms');
   }
@@ -56,13 +56,13 @@ showModal(){
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <input type="text" id="newRoomName" name="newRoomName" placeholder="Enter a room name..." value={this.state.room}></input>
+              <input type="text" id="newRoomName" name="newRoomName" placeholder="Enter a room name..." onChange={ () => this.createRoom() }></input>
             </div>
             <div className="col-6">
               <input type="button" id="cancel" name="cancel" value="Cancel" onClick={ () => this.handleModalClick() }></input>
             </div>
             <div className="col-6">
-              <input onClick={ () => this.createRoom() } type="button" id="submit" name="submit" value="Create Room"></input>
+              <input type="button" id="submit" name="submit" value="Create Room"></input>
             </div>
           </div>
         </div>
@@ -74,7 +74,12 @@ showModal(){
   }
 }
 
+
+
   createRoom(newRoomName) {
+    const handleChange = (e) =>{
+   this.setState({room: e.target.value});
+ }
     this.roomsRef.push({
       name: null
     });
