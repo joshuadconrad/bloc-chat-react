@@ -34,6 +34,7 @@ handleButtonChange(){
 
 modalOpen(){
   this.setState({ modalIsOpen: true });
+  this.setState({name: null});
 }
 
 modalClose(){
@@ -51,18 +52,18 @@ handleModalClick(){
 showModal(){
   if(this.state.modalIsOpen){
     return (
-      <form id="newRoomForm" action="">
+      <form id="newRoomForm">
         <h3>Create a new room name</h3>
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <input type="text" id="newRoomName" name="newRoomName" placeholder="Enter a room name..." onChange={ this.handleChange.bind(this) }></input>
+              <input type="text" id="newRoomName" name="newRoomName" placeholder="Enter a room name..." onChange={ this.handleChange.bind(this) } value={this.state.name}></input>
             </div>
             <div className="col-6">
               <input type="button" id="cancel" name="cancel" value="Cancel" onClick={ () => this.handleModalClick() }></input>
             </div>
             <div className="col-6">
-              <input onClick={ () => this.createRoom(this.state.name) } type="button" id="submit" name="submit" value="Create Room"></input>
+              <input type="button" id="submit" name="submit" value="Create Room" onClick={ () => this.createRoom(this.state.name)}></input>
             </div>
           </div>
         </div>
@@ -75,15 +76,15 @@ showModal(){
 }
 
 handleChange(e){
-this.setState({room: e.target.room});
+this.setState({name: e.target.value});
 }
 
   createRoom(newRoomName) {
-    console.log(newRoomName);
     this.roomsRef.push({
       name: newRoomName
     });
     this.setState({name: newRoomName});
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
@@ -100,7 +101,7 @@ this.setState({room: e.target.room});
                   {
                     this.state.rooms.map((room, index) =>
                       <tr className="rooms" key={index}>
-                        <td className="room">Room {index +1}</td>
+                        <td className="room">{room.name}</td>
                       </tr>
                     )
                   }
