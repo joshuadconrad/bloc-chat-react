@@ -62,7 +62,7 @@ showModal(){
               <input type="button" id="cancel" name="cancel" value="Cancel" onClick={ () => this.handleModalClick() }></input>
             </div>
             <div className="col-6">
-              <input onClick={ () => this.createRoom() }type="button" id="submit" name="submit" value="Create Room"></input>
+              <input onClick={ () => this.createRoom(this.state.name) } type="button" id="submit" name="submit" value="Create Room"></input>
             </div>
           </div>
         </div>
@@ -75,10 +75,11 @@ showModal(){
 }
 
 handleChange(e){
-this.setState({name: e.target.room});
+this.setState({room: e.target.room});
 }
 
   createRoom(newRoomName) {
+    console.log(newRoomName);
     this.roomsRef.push({
       name: newRoomName
     });
