@@ -23,11 +23,16 @@ class App extends Component {
 
     this.state = {
         activeRoom: '',
+        activeMessage: '',
     }
   }
 
   setRoom(room) {
    this.setState({ activeRoom: room });
+ }
+
+ setMessage(message){
+   this.setState({ activeMessage: message });
  }
 
   render() {
@@ -40,12 +45,14 @@ class App extends Component {
                 <RoomList
                   firebase={firebase}
                   setRoom={this.setRoom.bind(this)}
+                  setMessage={this.state.activeMessage}
                  />
               </div>
               <div className="col-md-9">
                 <MessageList
                   firebase={firebase}
                   setRoom={this.state.activeRoom}
+                  setMessage={this.setMessage.bind(this)}
                 />
               </div>
             </div>

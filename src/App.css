@@ -89,4 +89,14 @@ tbody:nth-child(even) .message{
 
 td {
   border-spacing: none;
+  padding: 10px;
+}
+
+.username{
+  font-weight: bold;
+  line-height: 25px;
+}
+
+.timestamp{
+  text-align: right;
 }
