@@ -1,33 +1,92 @@
-.App {
-  text-align: center;
+.RoomList{
+  position: relative;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.navbar{
+  background: #dedede;
+}
+@media(min-width: 768px){
+  .navbar{
+    height: 100vh;
+    padding-left: 30px!important;
+    text-align:left;
+}
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navbar-header{
+  font-size: 32px;
 }
 
-.App-link {
-  color: #61dafb;
+.rooms-container{
+  padding-top: 30px;
+  padding-bottom: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.room{
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+.rooms{
+  padding: 0;
+}
+
+.new-room{
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/*FORM*/
+
+.new-room-modal{
+  position: relative;
+  z-index: 2;
+}
+
+#newRoomForm{
+  position: fixed;
+  top: 20%;
+  left: 15%;
+  width: 70%;
+  background: grey;
+  padding: 15px;
+  border-radius: 5px;
+}
+@media(min-width:992px){
+  #newRoomForm{
+    top: 30%;
+    left: 40%;
+    width: 20%;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+#newRoomName{
+  width:100%;
+}
+
+#cancel{
+  width:100%;
+}
+
+#submit{
+  width:100%;
+}
+
+/*MESSAGES*/
+
+.messages{
+  width:100%;
+  border-collapse: collapse;
+}
+
+tbody:nth-child(odd) .message:nth-child(odd){
+  background: lightblue;
+}
+tbody:nth-child(even) .message{
+  background: white;
+}
+
+td {
+  border-spacing: none;
 }

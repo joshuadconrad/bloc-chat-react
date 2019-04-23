@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
+
 import './App.css';
 import './components/bootstrap-grid.css';
 import * as firebase from 'firebase';
@@ -19,12 +21,36 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+        activeRoom: '',
+    }
   }
+
+  setRoom(room) {
+   this.setState({ activeRoom: room });
+ }
 
   render() {
     return (
       <div className="App">
-       <RoomList firebase={firebase}/>
+        <section className="rooms">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-3 navbar">
+                <RoomList
+                  firebase={firebase}
+                  setRoom={this.setRoom.bind(this)}
+                 />
+              </div>
+              <div className="col-md-9">
+                <MessageList
+                  firebase={firebase}
+                  setRoom={this.state.activeRoom}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }
