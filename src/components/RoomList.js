@@ -52,17 +52,17 @@ class RoomList extends Component {
     if(this.state.modalIsOpen){
       return (
         <form id="newRoomForm">
-          <h3>Create a new room name</h3>
+          <h3 className="new-room-title">Create a new room name</h3>
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <input type="text" id="newRoomName" name="newRoomName" placeholder="Enter a room name..." onChange={ this.handleChange.bind(this) } value={this.state.name}></input>
+                <input className="textbox" type="text" id="newRoomName" name="newRoomName" placeholder="Enter a room name..." onChange={ this.handleChange.bind(this) } value={this.state.name}></input>
               </div>
               <div className="col-6">
-                <input type="button" id="cancel" name="cancel" value="Cancel" onClick={ () => this.handleModalClick() }></input>
+                <input className="cancel" type="button" id="cancel" name="cancel" value="Cancel" onClick={ () => this.handleModalClick() }></input>
               </div>
               <div className="col-6">
-                <input type="button" id="submit" name="submit" value="Create Room" onClick={ () => this.createRoom(this.state.name)}></input>
+                <input className="submit" type="button" id="submit" name="submit" value="Create Room" onClick={ () => this.createRoom(this.state.name)}></input>
               </div>
             </div>
           </div>

@@ -22,7 +22,7 @@ class MessageList extends Component {
     render() {
       return(
         <section className="MessageList">
-        <h2>{this.props.setRoom.name}</h2>
+        <h2 className="active-room">{this.props.setRoom.name}</h2>
           <table className="messages">
           <tbody>
             {
