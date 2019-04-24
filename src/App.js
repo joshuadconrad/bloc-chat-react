@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
+
 
 import './App.css';
 import './components/bootstrap-grid.css';
@@ -17,12 +19,16 @@ import * as firebase from 'firebase';
   };
   firebase.initializeApp(config);
 
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+
 class App extends Component {
   constructor(props){
     super(props);
 
     this.state = {
         activeRoom: '',
+        user: null,
     }
   }
 
@@ -30,9 +36,20 @@ class App extends Component {
    this.setState({ activeRoom: room });
  }
 
+  setUser(user){
+    this.setState({ user: user });
+  }
+
   render() {
     return (
       <div className="App">
+        <section className="superNav">
+          <User
+            firebase={firebase}
+            setUser={ (user) => this.setUser(user)}
+            user={this.state.user}
+          />
+        </section>
         <section className="rooms">
           <div className="container-fluid">
             <div className="row">
