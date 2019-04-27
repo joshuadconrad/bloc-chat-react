@@ -37,7 +37,7 @@ signOut(e){
     return (
       <section className="user">
         <div className="account">
-          <span class="log-in-out">{ this.props.user ? this.props.user.displayName : "Guest" }</span>
+          <span className="log-in-out">{ this.props.user ? this.props.user.displayName : "Guest" }</span>
           <button className="signin-signout" onClick={ this.props.user ? this.signOut.bind(this) : this.signIn.bind(this) }>
             <span>Sign { this.props.user ? 'out' : 'in' }</span>
           </button>

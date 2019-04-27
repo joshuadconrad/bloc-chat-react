@@ -89,8 +89,8 @@ class RoomList extends Component {
   render() {
     return (
       <section className="RoomList">
+      <button className="new-room" onClick={ () => this.handleModalClick() }>{ this.handleButtonChange() }</button>
         <h1 className="navbar-header">Bloc Chat</h1>
-        <button className="new-room" onClick={ () => this.handleModalClick() }>{ this.handleButtonChange() }</button>
         <div className="new-room-modal">{this.showModal()}</div>
         <table className="rooms-container">
           <tbody>
