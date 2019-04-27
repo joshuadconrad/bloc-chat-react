@@ -11,12 +11,11 @@ class MessageList extends Component {
         roomID: '',
         username: '',
       }
-      this.roomsRef = this.props.firebase.database().ref('rooms');
-      this.roomsRef = this.props.firebase.database().ref('messages');
+      this.messageRef = this.props.firebase.database().ref('messages');
   }
 
   componentDidMount() {
-     this.roomsRef.on('child_added', snapshot => {
+     this.messageRef.on('child_added', snapshot => {
        const message = snapshot.val();
        message.key = snapshot.key;
        this.setState({ messages: this.state.messages.concat( message ) })
@@ -28,7 +27,7 @@ class MessageList extends Component {
      return(
        <form id="newMessageForm">
                <input className="message-field" type="text" id="newMessage" name="newMessage" placeholder="Write your message here..." onChange={ this.handleChange.bind(this) } value={this.state.content}></input>
-               <input className="send" type="button" id="send" name="submit" value="Send" onClick={ (e) => this.createMessage(e)}></input>
+               <input className="send" type="button" id="send" name="submit" value="Send" onClick={ () => this.createMessage(this.state.content)}></input>
        </form>
      )}else{
         return(
@@ -37,20 +36,33 @@ class MessageList extends Component {
      }
    }
 
+
    handleChange(e){
      this.setState({content: e.target.value});
    }
 
-   createMessage(newMessage, index) {
-     newMessage.preventDefault();
-     this.roomsRef.push({
+   createMessage(newMessage) {
+     this.messageRef.push({
       content: this.state.content,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomID: this.props.setRoom.key,
-      username: this.props.user,
-     });
-     this.setState({content: newMessage});
+      username: this.props.user ? this.props.user.displayName : "Guest",
+    });
+     this.setState({content: ''});
    }
+
+   unixTime(time) {
+     var date = new Date(time*1000);
+     var hours = date.getHours();
+     var minutes = "0" + date.getMinutes();
+     var seconds = "0" + date.getSeconds();
+     var ampm = " pm";
+      if(hours > 12){
+        hours = hours - 12;
+        ampm = " am";
+      }
+    return hours+ ':' + minutes.substr(-2) + ampm;
+  }
 
     render() {
       return(
@@ -64,7 +76,7 @@ class MessageList extends Component {
               .map((message, index) =>
               <tr className="message" key={index}>
                 <td className="info"><span className="username">{message.username}</span><br/><span className="content">{message.content}</span></td>
-                <td className="timestamp">{message.sentAt}</td>
+                <td className="timestamp"><em>{this.unixTime(message.sentAt)}</em></td>
               </tr>
             )
             }
